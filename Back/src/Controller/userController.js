@@ -1,12 +1,12 @@
 const User = require('../Model/user');
 const jwt = require('jsonwebtoken');
-var CyrptoJS = require('crypto-js');
+var CryptoJS = require('crypto-js');
 require('dotenv').config();
 
 class UserController {
     static async register(req, res) 
     {
-        var bytes = CyrptoJS.AES.decrypt(req.body.jsonCrypt, process.env.SECRET);
+        var bytes = CryptoJS.AES.decrypt(req.body.jsonCrypt, process.env.SECRET);
         const decrypted = bytes.toString(CryptoJS.enc.Utf8);
         const json = JSON.parse(decrypted);
 
