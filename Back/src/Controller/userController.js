@@ -43,6 +43,46 @@ class UserController {
             res.status(500).send({ message: "Algo falhou,", data: error.message })
         }
     }
+
+    static async login(req, res)
+    {
+        var bytes = CryptoJS.AES.decrypt(req.body.jsonCrypt, process.env.SECRET);
+        const decrypted = bytes.toString(CryptoJS.enc.Utf8);
+        const json = JSON.parse(decrypted);
+
+        const { email, password } = json;
+
+        if (!email)
+            return res.status(422).json({ message: "É necessário fornecer um email." });
+
+        if (!password)
+            return res.status(422).json({ message: "É necessário usar uma senha." });
+
+        const user = await User.findOne({email});
+
+        var bytes = CryptoJS.AES.decrypt(user.password, process.env.SECRET);
+        const decryptedPassword = bytes.toString(CryptoJS.enc.Utf8);
+
+        if(decryptedPassword != password)
+            return res.status(422).send({ message: "Email ou senha estão incorretos." });
+
+        try {
+            const secret = process.env.SECRET;
+            const token = jwt.sign(
+                {
+                    id: user.id
+                },
+                secret,
+                {
+                    expiresIn: '1 day'
+                }
+            );
+
+            return res.status(200).send({ token: token });
+        } catch (error) {
+            return res.status(500).send({ message: "Something failed", data: error.message });
+        }
+    }
 }
 
 module.exports = UserController;

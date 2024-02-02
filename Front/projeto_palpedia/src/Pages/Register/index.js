@@ -1,4 +1,5 @@
-import Formulario from "../../Components/FormComponent/form";
+import Formulario from "../../Components/FormComponent";
+import AlertComponent from "../../Components/AlertComponent";
 
 // import styles from './styles.module.scss';
 
@@ -17,6 +18,7 @@ export default function RegisterPage() {
           <Card style={{ width: '100%' }}>
             <Card.Body>
               <Card.Title>Criar Conta</Card.Title>
+              <AlertComponent />
               <Formulario />
             </Card.Body>
           </Card>
