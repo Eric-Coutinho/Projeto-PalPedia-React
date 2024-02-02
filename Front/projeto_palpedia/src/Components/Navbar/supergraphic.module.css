@@ -1,0 +1,21 @@
+.logo {
+    background-image: url('./img/logo\ Updated.png');
+    height: 5rem;
+    position: relative;
+    transform: scale(1.02);
+    top: 3px;
+    z-index: 5;
+    display: flex;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    object-fit: cover;
+    left: -80px;
+}
+
+@media (max-width: 1439px ) {
+    .logo {
+        left: 0px;
+    }
+}
