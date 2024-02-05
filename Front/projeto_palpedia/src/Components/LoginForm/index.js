@@ -37,7 +37,7 @@ export default function LoginForm() {
       });
 
       sessionStorage.setItem("token", res.data.token);
-      navigate('/home');
+      navigate('/');
 
       setMessage(res.data.message);
       setVariant("success");
@@ -76,7 +76,7 @@ export default function LoginForm() {
 
   return (
     <Form
-      style={{ display: "flex", flexDirection: "column" }}
+      className={styles.formulario}
       onSubmit={handleSubmit}
     >
       <Form.Group className="mb-3" controlId="formBasicEmail">

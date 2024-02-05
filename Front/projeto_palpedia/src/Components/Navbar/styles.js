@@ -55,13 +55,14 @@ export const MenuLinks = styled.div`
     position: absolute;
     display: flex;
     flex-direction: column;
-    margin-left: 3.5rem;
+    margin-inline: 3.5rem;
     color: ${white};
     width: 90%;
     z-index: 3;
     transition: all 3s;
     padding: 1.5em;
     border-radius: 0 0 10px 10px;
+    background-color: rgb(64, 64, 64);
 `
 
 export const Icon = styled.img`
