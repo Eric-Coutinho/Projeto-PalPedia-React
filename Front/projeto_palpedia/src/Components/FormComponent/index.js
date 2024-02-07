@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-import styles from "./styles.module.scss";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";

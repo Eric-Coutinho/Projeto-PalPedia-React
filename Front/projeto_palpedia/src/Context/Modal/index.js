@@ -5,11 +5,12 @@ ModalContext.displayName = 'Modal';
 
 export const ModalProvider = ({ children }) => {
     var [show, setShow] = useState(false);
+    var [pal, setPal] = useState("");
 
     async function handleShow(){
-        setTimeout(() => {
-            setShow(false)
-        }, 5000)
+        if(show === true) {
+            console.log(show);
+        }
     }
 
     useEffect(() => {
@@ -20,7 +21,9 @@ export const ModalProvider = ({ children }) => {
         <ModalContext.Provider
             value={{
                 show,
-                setShow
+                setShow,
+                pal,
+                setPal
             }}
         >
             {children}
