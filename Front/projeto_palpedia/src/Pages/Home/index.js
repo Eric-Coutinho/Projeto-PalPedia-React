@@ -1,4 +1,3 @@
-import GameMap from "../../Components/GameMapComponent";
 import PalCard from "../../Components/PalCard";
 import styles from "./styles.module.scss"
 

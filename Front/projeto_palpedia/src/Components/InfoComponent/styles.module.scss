@@ -1,0 +1,45 @@
+.Modal {
+    color: white;
+}
+
+.cardDiv {
+    padding: 1em 10em;
+}
+
+@media (max-width: 768px) {
+    .cardDiv {
+        padding: 0;
+    }
+}
+
+.cardBody {
+    background-color: transparent;
+}
+
+.column {
+    display: flex;
+    justify-content: center;
+}
+
+.row {
+    margin-block: 0.5em;
+}
+
+.elements {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 3em;
+}
+
+.drops {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.drops .dropImage {
+    width: 4em;
+    height: 3em;
+}
+
