@@ -33,7 +33,7 @@ export default function NavBar() {
 
   function handleClickNavigate() {
     navigate("/")
-    if(isMenuOpen == true)
+    if(isMenuOpen === true)
       setIsMenuOpen(!isMenuOpen);
   }
 
@@ -53,11 +53,11 @@ export default function NavBar() {
               />
             </Col>
           </Form>
-          {/* <Void />
-                    <Void /> */}
           <NavLink onClick={handleClick}>
-            <img src={isMenuOpen ? Close : Menu} />
-            <Centered>Menu</Centered>
+            {/* <img src={isMenuOpen ? Close : Menu} /> */}
+            {/* <Centered>  */}
+            <Icon src={isMenuOpen ? Close : Menu}/>
+            {/* </Centered> */}
           </NavLink>
         </Links>
       </Row>

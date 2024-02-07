@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'
-import { gray20, white } from '../../styles/colors';
+import { white } from '../../styles/colors';
 
 export const Supergraphic = styled.div``;
 
@@ -20,7 +20,7 @@ export const Links = styled.div`
     display: flex;
     gap: 1rem;
     justify-content: flex-end;
-    margin-right: 4em;
+    margin-right: 1em;
 `;
 
 export const NavMenu = styled.div`

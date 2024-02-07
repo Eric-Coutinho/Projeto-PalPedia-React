@@ -36,6 +36,7 @@ function PalModal() {
         size="lg"
         data-bs-theme="dark"
         className={styles.Modal}
+        style={{ padding: '0' }}
       >
         <Modal.Header closeButton>
           <Modal.Title>Nome do Pal{pal.name}</Modal.Title>
