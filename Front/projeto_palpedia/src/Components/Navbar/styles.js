@@ -55,7 +55,7 @@ export const MenuLinks = styled.div`
     position: absolute;
     display: flex;
     flex-direction: column;
-    margin-inline: 3.5rem;
+    margin-inline: 1.5rem;
     color: ${white};
     width: 90%;
     z-index: 3;

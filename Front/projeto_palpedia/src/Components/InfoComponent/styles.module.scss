@@ -1,45 +1,31 @@
-.Modal {
-    color: white;
-}
-
-.cardDiv {
-    padding: 1em 10em;
-}
-
-@media (max-width: 768px) {
-    .cardDiv {
-        padding: 0;
-    }
-}
-
-.cardBody {
-    background-color: transparent;
-}
-
 .column {
     display: flex;
     justify-content: center;
 }
 
 .row {
-    margin-block: 0.5em;
+    margin-block: 1em;
 }
 
-.elements {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 3em;
+.palName {
+    background-color: rgb(71, 71, 175);
+    padding: 0.5em;
+    border-radius: 10px;
+    color: white;
+    font-size: 2em;
+    font-weight: 500;
+    margin-left: 0.75em;
 }
 
-.drops {
+@media (max-width: 1440px) {
+    .palName {
+        margin-left: 0;
+    }
+}
+
+.cardBody {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    justify-content: center;
 }
-
-.drops .dropImage {
-    width: 4em;
-    height: 3em;
-}
-
