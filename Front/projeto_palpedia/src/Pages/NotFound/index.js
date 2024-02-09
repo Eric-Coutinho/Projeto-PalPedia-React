@@ -12,7 +12,7 @@ export default function NotFoundPage() {
             Página não Encontrada
           </Card.Title>
           <Card.Text>
-            A página que busca não existe ou está em construção.
+            A página que busca não existe, está em construção ou não tem acesso a ela.
           </Card.Text>
         </Card.Body>
       </Card>

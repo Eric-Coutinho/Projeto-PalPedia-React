@@ -37,13 +37,13 @@ export default function LoginForm() {
       });
 
       sessionStorage.setItem("token", res.data.token);
-      navigate('/');
-
+      
       setMessage(res.data.message);
       setVariant("success");
       setShow(true);
       setEmail("");
       setPassword("");
+      navigate('/');
     } catch (error) {
       setMessage("Erro ao se conectar.");
       setShow(true);

@@ -83,7 +83,7 @@ export default function NavBar() {
             <NavMenu>
               <Icon src={Right} />
               <Nav>
-                <Link to="/mapa" style={{ color: 'white', textDecoration: 'none' }} onClick={handleClick}>Mapa</Link>
+                <Link to="/about" style={{ color: 'white', textDecoration: 'none' }} onClick={handleClick}>Sobre</Link>
               </Nav>
             </NavMenu>
           </Span>
@@ -91,7 +91,7 @@ export default function NavBar() {
             <NavMenu>
               <Icon src={Right} />
               <Nav>
-                <Link to="/about" style={{ color: 'white', textDecoration: 'none' }} onClick={handleClick}>Sobre</Link>
+                <Link to="/usuarios" style={{ color: 'white', textDecoration: 'none' }} onClick={handleClick}>Usuários</Link>
               </Nav>
             </NavMenu>
           </Span>

@@ -6,9 +6,11 @@ import { ModalProvider } from "./Context/Modal";
 import HomePage from "./Pages/Home";
 import LoginPage from "./Pages/Login";
 import InfoPage from "./Pages/InfoPage";
+import UserPage from "./Pages/UserPage";
 import NavBar from "./Components/Navbar";
 import RegisterPage from "./Pages/Register";
 import NotFoundPage from "./Pages/NotFound";
+import ProtectedRoute from "./Pages/ProtectedRoute"
 
 function App() {
   return (
@@ -21,6 +23,13 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/pal" element={<InfoPage />} />
+            <Route path="/usuarios" element={
+              <ProtectedRoute
+                errorPage={<NotFoundPage />}
+                targetPage={<UserPage />}
+                />
+            }
+            />
             <Route path="/*" element={<NotFoundPage />} />
           </Routes>
         </AlertProvider>

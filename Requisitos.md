@@ -4,7 +4,7 @@
 
 - [x] Deve ter login
 
-- [] Somente adm pode deletar
+- [x] Somente adm pode deletar
 
 - [] Site deve ser traduzido
 
