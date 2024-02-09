@@ -24,8 +24,8 @@ function PalModal() {
 
   const goToPalPage = () => {
     setShow(false);
-    navigate("/pal")
-  }
+    navigate("/pal");
+  };
 
   return (
     <>
@@ -36,10 +36,26 @@ function PalModal() {
         size="lg"
         data-bs-theme="dark"
         className={styles.Modal}
-        style={{ padding: '0' }}
+        style={{ padding: "0" }}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Nome do Pal{pal.name}</Modal.Title>
+          <Col>
+            <Modal.Title>Nome do Pal{pal.name}</Modal.Title>
+          </Col>
+          <Col style={{ display: "flex", justifyContent: "flex-end" }}>
+            {Array.from({ length: 2 }).map((_, idx) => (
+              <Card
+                style={{
+                  height: "5em",
+                  width: "5em",
+                  marginInline: "0.5em",
+                  backgroundColor: "transparent",
+                }}
+              >
+                <Card.Img src="https://palpedia.azrocdn.com/chickenpal.png" />
+              </Card>
+            ))}
+          </Col>
         </Modal.Header>
         <Modal.Body>
           <div className={styles.cardDiv}>
@@ -64,18 +80,6 @@ function PalModal() {
                 className={styles.column}
                 style={{ alignItems: "flex-start" }}
               >
-                <Col className={styles.column}>
-                  <div className={styles.elements}>
-                    <Row className={styles.column}>
-                      Elementos {pal.elements}
-                    </Row>
-                    {Array.from({ length: 3 }).map((_, idx) => (
-                      <Row key={idx}>
-                        <Image src="https://palpedia.azrocdn.com/chickenpal.png" />
-                      </Row>
-                    ))}
-                  </div>
-                </Col>
                 <Col className={styles.column}>
                   <div className={styles.elements}>
                     <Row className={styles.column}>Drops {pal.drops}</Row>
@@ -117,7 +121,11 @@ function PalModal() {
             </Row>
             <Row className={styles.row}>
               <Row className={styles.column}>
-                <Button variant="primary" onClick={goToPalPage} style={{ marginTop: '1em' }}>
+                <Button
+                  variant="primary"
+                  onClick={goToPalPage}
+                  style={{ marginTop: "1em" }}
+                >
                   Ver Mais
                 </Button>
               </Row>

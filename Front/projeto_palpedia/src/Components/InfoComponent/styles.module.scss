@@ -7,6 +7,11 @@
     margin-block: 1em;
 }
 
+.columnElements {
+    display: flex;
+    justify-content: flex-start
+}
+
 .palName {
     background-color: rgb(71, 71, 175);
     padding: 0.5em;
@@ -20,6 +25,13 @@
 @media (max-width: 1440px) {
     .palName {
         margin-left: 0;
+    }
+}
+@media (max-width: 1000px) {
+    .columnElements {
+        display: flex;
+        justify-content: center;
+        padding: 1em;
     }
 }
 
