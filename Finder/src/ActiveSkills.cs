@@ -4,7 +4,7 @@ using HtmlAgilityPack;
 
 public class ActiveSkills
 {
-    public List<(ActiveSkill Skill, int Level)> Skills { get; set; }
+    public List<(ActiveSkill Skill, int Level)> Skills { get; set; } = new();
 
     private void SetTabs(HtmlNodeCollection tabs)
     {
@@ -12,13 +12,14 @@ public class ActiveSkills
 
         foreach (var tab in tabs)
         {
-            ActiveSkill skill = new ActiveSkill();
-
             var divs = tab.SelectNodes("div");
+            var name = divs[0].SelectNode("div", "class", "capitalize").InnerText.Trim();
+            ActiveSkill skill = ActiveSkillsBuffer.Current.Get(name);
+            skill.Name = name;
+
             var level = int.Parse(divs[0].SelectNode("small").InnerText.Replace("Lv.", "").Trim());
 
             skill.Element = divs[0].SelectNode("img").GetAttributeValue("alt", "").GetElement().Value;
-            skill.Name = divs[0].SelectNode("div", "class", "capitalize").InnerText.Trim();
             skill.Type = divs[0].SelectNode("span").InnerText.GetActives();
 
             var specifications = divs[1].SelectNodes("div");
@@ -36,6 +37,8 @@ public class ActiveSkills
                 if (child.NodeType == HtmlNodeType.Text)
                     rating += child.InnerText;
             skill.Rating = float.Parse(rating);
+            
+            Skills.Add((skill, level));
         }
     }
 

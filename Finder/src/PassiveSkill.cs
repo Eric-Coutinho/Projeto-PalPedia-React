@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class PassiveSkill
 {
     public string Name { get; set; }
-    public List<(string skill, int percent)> skills = new();
+    public List<(string skill, int percent)> Skills = new();
     public Passive PassiveType { get; set; }
     public int PassiveLevel { get; set; }
 

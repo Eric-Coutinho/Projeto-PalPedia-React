@@ -38,7 +38,7 @@ public class PassiveSkills
                     .Replace("-", "")
                     .Replace("%", "");
 
-                skill.skills.Add((
+                skill.Skills.Add((
                     char.ToUpper(skillName[0]) + skillName.Substring(1).ToLower(),
                     int.Parse(skillPercent)
                 ));

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Net.Http;
 
 public class Pal
@@ -98,6 +99,7 @@ public class Pal
         this.Movement = new Movement(html);
         this.Drops = new Drops(html);
         this.PartnerSkill = new PartnerSkill(html);
+        this.WorkSkills = new WorkSkills(html);
         this.PassiveSkills = new PassiveSkills(html);
         this.ActiveSkills = new ActiveSkills(html);
     }

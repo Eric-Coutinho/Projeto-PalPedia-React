@@ -2,8 +2,7 @@
 using System.IO;
 using System.Net.Http;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
-using Newtonsoft.Json;
+using System.Text.Json;
 
 HttpClient.DefaultProxy.Credentials = System.Net.CredentialCache.DefaultCredentials;
 
@@ -28,15 +27,26 @@ for (int i = 0; i < links.Count; i++)
     Pal pal = Pal.FromHtml(palhtml);
     Palpedia.Current.Add(pal);
 
-    var percent = ((float)i / all) * 100;
+    var percent = (float)i / all * 100;
     Console.Clear();
     Console.WriteLine($"Progresso: {percent:F2}%\n\n\n");
     Console.WriteLine($"Ultimo carregado: {pal.Name}");
 }
 
-Console.Clear();
-Console.WriteLine($"Progresso: 100%\n\n\n");
-Console.WriteLine($"Escrevendo json...");
-string json = JsonConvert.SerializeObject(Palpedia.Current.Get());
+var list = new List<Dictionary<string, object>>();
+var species = Palpedia.Current.Get();
+for (int i = 0; i < species.Count; i++)
+{
+    var specie = species[i].ToDictionary();
+    if (specie.TryGetValue("Pals", out var palsValue) && palsValue is List<Dictionary<string, object>> palsList && palsList.Count > 0)
+        list.Add(specie);
 
-File.WriteAllText("palpedia.json", json);
+    var percent = (float)i / species.Count * 100;
+    Console.Clear();
+    Console.WriteLine($"Escrevendo json...");
+    Console.WriteLine($"Progresso: {percent}%");
+}
+
+Console.Clear();
+File.WriteAllText("palpedia.json", JsonSerializer.Serialize(list));
+Console.WriteLine($"Json Finalizado");

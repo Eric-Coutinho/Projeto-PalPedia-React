@@ -28,9 +28,9 @@ public class Palpedia
     {
         var form = pal.Name.Contains("Alpha") ? Form.Alpha : Form.Default;
         int id;
-        bool success = int.TryParse(pal.Id.TrimEnd('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'), out id);
+        bool success = int.TryParse(pal.Id, out id);
 
-        char letter = success && pal.Id.Length > 0 ? pal.Id[^1] : 'A';
+        char letter = !success && pal.Id.Length > 0 ? pal.Id[^1] : 'A';
 
         var specie = Current.Get(id);
         if (form == Form.Alpha)
