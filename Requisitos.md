@@ -8,7 +8,7 @@
 
 - [] Site deve ser traduzido
 
-- [] Cada integrante deve fazer uma parte do front-end e do back-end
+- [x] Cada integrante deve fazer uma parte do front-end e do back-end
 
 - [x] Deve ter paginação
 

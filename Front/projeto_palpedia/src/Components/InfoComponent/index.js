@@ -8,9 +8,9 @@ import styles from "./styles.module.scss";
 import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 import Container from "react-bootstrap/esm/Container";
+import { useState } from "react";
 
 function InfoPal() {
-  const pal = "";
 
   return (
     <>
@@ -38,7 +38,7 @@ function InfoPal() {
             style={{ marginBottom: "1em", height: "fit-content" }}
           >
             <Card.Img
-              src="https://palpedia.azrocdn.com/chickenpal.png"
+              src="https://palpedia.azrocdn.com/pinkcat.png"
               alt="Card image"
             />
           </Card>

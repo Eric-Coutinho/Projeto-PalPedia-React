@@ -111,6 +111,11 @@ class UserController {
       res.status(500).send({ message: "Algo falhou,", data: error.message });
     }
   }
+
+  static async findUser(req, res) {
+    const users = await User.find();
+    return res.status(200).send(users);
+  }
 }
 
 module.exports = UserController;
