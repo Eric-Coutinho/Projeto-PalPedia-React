@@ -11,6 +11,8 @@ import CryptoJS from "crypto-js";
 import { SECRET } from "../../env";
 import axios from "axios";
 
+import { i18n } from "../../Translate/i18n";
+
 export default function LoginForm() {
   const { setMessage, setShow, setVariant } = useContext(AlertContext);
   const navigate = useNavigate();
@@ -80,10 +82,10 @@ export default function LoginForm() {
       onSubmit={handleSubmit}
     >
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Endereço de Email</Form.Label>
+        <Form.Label>{i18n.t("login.emailAdress")}</Form.Label>
         <Form.Control
           type="email"
-          placeholder="Email"
+          placeholder={i18n.t("login.email")}
           onChange={(e) => {
             setEmail(e.target.value);
           }}
@@ -91,10 +93,10 @@ export default function LoginForm() {
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Senha</Form.Label>
+        <Form.Label>{i18n.t("login.password")}</Form.Label>
         <Form.Control
           type="password"
-          placeholder="Senha"
+          placeholder={i18n.t("login.password")}
           onChange={(e) => {
             setPassword(e.target.value);
           }}
@@ -102,13 +104,13 @@ export default function LoginForm() {
       </Form.Group>
 
       <Button variant="primary" type="submit" style={{ marginBlock: "0.8em" }}>
-        Entrar
+      {i18n.t("login.buttonLogin")}
       </Button>
 
       <div style={{ width: '100%' }}>
         <Link to="/register" style={{ textDecoration: "none", color: "white" }}>
           <Button variant="danger" type="button" style={{ width: '100%' }}>
-            Registre-se
+          {i18n.t("login.buttonRegister")}
           </Button>
         </Link>
       </div>

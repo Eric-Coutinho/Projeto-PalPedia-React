@@ -22,6 +22,8 @@ import Close from "./img/close-small.svg";
 import Right from "./img/forward-right-small.svg";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 
+import { i18n } from "../../Translate/i18n";
+
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -58,7 +60,7 @@ export default function NavBar() {
                   style={{ color: "white", textDecoration: "none" }}
                   onClick={handleClick}
                 >
-                  Usuários
+                  {i18n.t("navbar.users")}
                 </Link>
               </Nav>
             </NavMenu>
@@ -77,16 +79,13 @@ export default function NavBar() {
             <Col xs="auto">
               <Form.Control
                 type="text"
-                placeholder="Procurar"
+                placeholder={i18n.t("navbar.search")}
                 className=" mr-sm-2"
               />
             </Col>
           </Form>
           <NavLink onClick={handleClick}>
-            {/* <img src={isMenuOpen ? Close : Menu} /> */}
-            {/* <Centered>  */}
             <Icon src={isMenuOpen ? Close : Menu} />
-            {/* </Centered> */}
           </NavLink>
         </Links>
       </Row>
@@ -101,7 +100,7 @@ export default function NavBar() {
                   style={{ color: "white", textDecoration: "none" }}
                   onClick={handleClick}
                 >
-                  Login
+                  {i18n.t("navbar.login")}
                 </Link>
               </Nav>
             </NavMenu>
@@ -115,7 +114,7 @@ export default function NavBar() {
                   style={{ color: "white", textDecoration: "none" }}
                   onClick={handleClick}
                 >
-                  Registre-se
+                  {i18n.t("navbar.register")}
                 </Link>
               </Nav>
             </NavMenu>
@@ -129,7 +128,7 @@ export default function NavBar() {
                   style={{ color: "white", textDecoration: "none" }}
                   onClick={handleClick}
                 >
-                  Sobre
+                  {i18n.t("navbar.about")}
                 </Link>
               </Nav>
             </NavMenu>

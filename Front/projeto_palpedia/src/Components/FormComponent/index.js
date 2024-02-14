@@ -10,6 +10,8 @@ import CryptoJS from "crypto-js";
 import { SECRET } from "../../env";
 import axios from "axios";
 
+import { i18n } from "../../Translate/i18n";
+
 export default function Formulario() {
   const { setMessage, setShow, setVariant } = useContext(AlertContext);
 
@@ -96,10 +98,10 @@ export default function Formulario() {
       onSubmit={handleSubmit}
     >
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Nome Completo</Form.Label>
+        <Form.Label>{i18n.t("register.nameComplete")}</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Nome"
+          placeholder={i18n.t("register.name")}
           onChange={(e) => {
             setName(e.target.value);
           }}
@@ -107,10 +109,10 @@ export default function Formulario() {
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Endereço de Email</Form.Label>
+        <Form.Label>{i18n.t("register.emailAdress")}</Form.Label>
         <Form.Control
           type="email"
-          placeholder="Email"
+          placeholder={i18n.t("register.email")}
           onChange={(e) => {
             setEmail(e.target.value);
           }}
@@ -118,10 +120,10 @@ export default function Formulario() {
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Senha</Form.Label>
+        <Form.Label>{i18n.t("register.password")}</Form.Label>
         <Form.Control
           type="password"
-          placeholder="Senha"
+          placeholder={i18n.t("register.password")}
           onChange={(e) => {
             setPassword(e.target.value);
           }}
@@ -129,10 +131,10 @@ export default function Formulario() {
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Confirmar senha</Form.Label>
+        <Form.Label>{i18n.t("register.confirmPassword")}</Form.Label>
         <Form.Control
           type="password"
-          placeholder="Confirmar senha"
+          placeholder={i18n.t("register.confirmPassword")}
           onChange={(e) => {
             setConfirmPassword(e.target.value);
           }}
@@ -140,13 +142,15 @@ export default function Formulario() {
       </Form.Group>
 
       <Button variant="primary" type="submit" style={{ marginBlock: "0.8em" }}>
-        Registrar
+      {i18n.t("register.buttonRegister")}
       </Button>
       <Link to="/" style={{ textDecoration: "none", color: "white" }}>
         <Button variant="danger" type="button" style={{ width: '100%' }}>
-          Cancelar
+        {i18n.t("register.buttonCancel")}
         </Button>
       </Link>
     </Form>
   );
 }
+
+
