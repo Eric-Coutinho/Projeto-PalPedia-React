@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
+
 import { useNavigate } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.css";
 
 import styles from "./styles.module.scss";
 
+import "bootstrap/dist/css/bootstrap.css";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
@@ -17,10 +18,21 @@ export default function UserCardComponent() {
   const [idUser, setIdUser] = useState([]);
   const navigate = useNavigate();
 
+  const token = sessionStorage.getItem("token");
+  console.log(token);
+
+  const tokenParts = token.split('.');
+  const payload = atob(tokenParts[1].replace(/-/g, '+').replace(/_/g, '/'));
+  const tokenObj = JSON.parse(payload);
+
+  console.log(tokenObj);
+
+  if(tokenObj.isAdm !== true)
+    navigate('/notFound');
+
   async function GetUsers() {
     try {
       const res = await axios.get("http://localhost:8080/api/user/find");
-      console.log(res);
       setUsers(res.data);
     } catch (error) {
       console.log(error);
@@ -31,7 +43,6 @@ export default function UserCardComponent() {
     try {
       const res = await axios.delete(`http://localhost:8080/api/user/delete/${idUser}`);
       console.log(res);
-      
       const updatedUsers = users.filter((user) => user._id !== idUser);
       setUsers(updatedUsers);
     } catch (error) {
@@ -46,7 +57,7 @@ export default function UserCardComponent() {
   async function handleClick(e, userId) {
     setIdUser(userId);
     DeleteUser();
-    // navigate('/usuarios')
+    navigate('/usuarios');
   }
 
   const RenderCards = () => {

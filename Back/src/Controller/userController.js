@@ -34,7 +34,7 @@ class UserController {
       name: name,
       email: email,
       password: passwordCrypt,
-      isAdm: true,
+      isAdm: false,
       createdAt: Date.now(),
       updatedAt: Date.now(),
       deletedAt: null,
@@ -78,6 +78,7 @@ class UserController {
       const token = jwt.sign(
         {
           id: user.id,
+          isAdm: user.isAdm,
         },
         secret,
         {
