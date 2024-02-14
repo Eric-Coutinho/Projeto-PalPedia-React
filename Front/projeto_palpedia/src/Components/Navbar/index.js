@@ -38,33 +38,32 @@ export default function NavBar() {
     if (isMenuOpen === true) setIsMenuOpen(!isMenuOpen);
   }
 
-  const token = sessionStorage.getItem("token");
-  console.log(token);
-
-  const tokenParts = token.split(".");
-  const payload = atob(tokenParts[1].replace(/-/g, "+").replace(/_/g, "/"));
-  const tokenObj = JSON.parse(payload);
-
-  console.log(tokenObj);
-
   function LinkUsers() {
+    const token = sessionStorage.getItem("token");
+    if (!token) return;
+
+    const tokenParts = token.split(".");
+    const payload = atob(tokenParts[1].replace(/-/g, "+").replace(/_/g, "/"));
+    const tokenObj = JSON.parse(payload);
+
+    console.log(tokenObj);
     if (tokenObj.isAdm !== true) return <></>;
     else
       return (
         <Span>
-            <NavMenu>
-              <Icon src={Right} />
-              <Nav>
-                <Link
-                  to="/usuarios"
-                  style={{ color: "white", textDecoration: "none" }}
-                  onClick={handleClick}
-                >
-                  {i18n.t("navbar.users")}
-                </Link>
-              </Nav>
-            </NavMenu>
-          </Span>
+          <NavMenu>
+            <Icon src={Right} />
+            <Nav>
+              <Link
+                to="/usuarios"
+                style={{ color: "white", textDecoration: "none" }}
+                onClick={handleClick}
+              >
+                {i18n.t("navbar.users")}
+              </Link>
+            </Nav>
+          </NavMenu>
+        </Span>
       );
   }
 

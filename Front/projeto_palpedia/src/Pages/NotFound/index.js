@@ -1,6 +1,8 @@
 import Card from 'react-bootstrap/Card';
 import Container from "react-bootstrap/Container";
 
+import { i18n } from "../../Translate/i18n";
+
 export default function NotFoundPage() {
   return (
     <>
@@ -9,10 +11,10 @@ export default function NotFoundPage() {
         <Card.Img variant="top" src="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2024/01/palworld-pals-working-on-an-assembly-line.jpg"/>
         <Card.Body>
           <Card.Title>
-            Página não Encontrada
+          {i18n.t("notFound.title")}
           </Card.Title>
           <Card.Text>
-            A página que busca não existe, está em construção ou não tem acesso a ela.
+          {i18n.t("notFound.text")}
           </Card.Text>
         </Card.Body>
       </Card>
