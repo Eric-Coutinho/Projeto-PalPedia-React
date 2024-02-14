@@ -5,7 +5,7 @@ public class ActiveSkill
 {
     public string Name { get; set; }
     public Element Element { get; set; }
-    public Active Type { get; set; }
+    public Active? Type { get; set; }
     public Description Description { get; set; }
     public int Power { get; set; }
     public (int Min, int Max) Range { get; set; }
@@ -40,8 +40,17 @@ public enum Active
 
 public static class Actives
 {
-    public static Active GetActives(this string sctive)
-        => (Active)Enum.Parse(typeof(Active),
-            char.ToUpper(sctive[0]) + sctive.Substring(1).ToLower(),
-            true);
+    public static Active? GetActives(this string sctive)
+    {
+        string formattedString = char.ToUpper(sctive[0]) + sctive.Substring(1).ToLower();
+
+        if (Enum.TryParse(formattedString, true, out Active active))
+        {
+            return active;
+        }
+        else
+        {
+            return null;
+        }
+    }
 }

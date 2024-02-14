@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
+const { loadJSON } = require('./src/Json.js');
 
+loadJSON();
 const app = express();
 
 require('./Startup/db')();

@@ -63,7 +63,8 @@ public class Pal
 
                 var node = html.SelectNode("a", "class", "image image-thumbnail");
                 var nodeImage = node.SelectNode("img");
-                _image = nodeImage.GetAttributeValue("src", "");
+                string image = nodeImage.GetAttributeValue("src", "");
+                _image = image.Replace("/revision/latest?cb=20240202133852", "");
             }
             return _image;
         }

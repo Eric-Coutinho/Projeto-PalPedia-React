@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 public class Palpedia
 {
@@ -31,6 +32,7 @@ public class Palpedia
         bool success = int.TryParse(pal.Id, out id);
 
         char letter = !success && pal.Id.Length > 0 ? pal.Id[^1] : 'A';
+        if (id == 0) id = int.Parse(Regex.Match(pal.Id, @"^\d+").Value);
 
         var specie = Current.Get(id);
         if (form == Form.Alpha)
@@ -43,7 +45,7 @@ public class Palpedia
             if (alpha.Pal.Name.Replace("Alpha", "").Trim() == pal.Name && alpha.Pal != pal)
             {
                 alpha.Pal.Id = pal.Id;
-                specie.Pals.Add((alpha.Pal, alpha.Form, alpha.Letter));
+                specie.Pals.Add((alpha.Pal, alpha.Form, letter));
             }
         }
     }
