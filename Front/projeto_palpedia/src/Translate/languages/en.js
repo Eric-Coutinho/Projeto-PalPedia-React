@@ -1,5 +1,5 @@
 const messages = {
-    en: {
+    pt: {
         translations: {
             login: {
                 loginTitle: "Fazer login",
@@ -12,7 +12,7 @@ const messages = {
             register: {
                 registerTitle: "Create Account",
                 nameComplete: "Nome Completo",
-                name: "name",
+                name: "Nome",
                 emailAdress: "Endereço de Email",
                 email: "Email",
                 password: "Senha",
@@ -23,9 +23,8 @@ const messages = {
             navbar: {
                 login: "Entrar",
                 register: "Registre-se",
-                about: "Sobre"
-            },
-            searchHome: {
+                about: "Sobre",
+                users: "Usuários",
                 search: "Procurar"
             },
             notFound: {
@@ -36,11 +35,13 @@ const messages = {
                 health: "Vida",
                 attack: "Ataque",
                 defense: "Defesa",
-                workSpeed: "Velocidade de trabalho",
+                speed: "Velocidade de ",
+                work:"Trabalho",
                 rarity: "Raridade",
                 seeMoreButton: "Ver Mais",
                 description: "Descrição",
                 drops: "Itens",
+                stats: "Status",
                 skills: "Habilidades",
                 partner: "de Parceiro",
                 working: "de Trabalho",

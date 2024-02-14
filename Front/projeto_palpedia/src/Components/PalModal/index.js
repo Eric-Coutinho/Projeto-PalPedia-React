@@ -13,6 +13,8 @@ import Container from "react-bootstrap/Container";
 import styles from "./styles.module.scss";
 import { useNavigate } from "react-router-dom";
 
+import { i18n } from "../../Translate/i18n";
+
 function PalModal() {
   const { show, setShow, pal } = useContext(ModalContext);
   const navigate = useNavigate();
@@ -82,7 +84,7 @@ function PalModal() {
               >
                 <Col className={styles.column}>
                   <div className={styles.elements}>
-                    <Row className={styles.column}>Drops {pal.drops}</Row>
+                    <Row className={styles.column}>{i18n.t("palInfo.drops")}</Row>
                     {Array.from({ length: 3 }).map((_, idx) => (
                       <Row key={idx}>
                         <Image
@@ -97,21 +99,21 @@ function PalModal() {
               <Col aria-colspan={2} className={styles.column}>
                 <Row>
                   <Row style={{ display: "flex", justifyContent: "center" }}>
-                    Stats {pal.stats}
+                  {i18n.t("palInfo.stats")}
                   </Row>
                   <Row>
                     <Card>
                       <ListGroup variant="flush">
-                        <ListGroup.Item> Vida: 0{pal.hp} </ListGroup.Item>
-                        <ListGroup.Item> Ataque: 0{pal.attack} </ListGroup.Item>
-                        <ListGroup.Item> Defesa: 0{pal.rarity} </ListGroup.Item>
+                        <ListGroup.Item> {i18n.t("palInfo.health")}: 0{pal.hp} </ListGroup.Item>
+                        <ListGroup.Item> {i18n.t("palInfo.attack")}: 0{pal.attack} </ListGroup.Item>
+                        <ListGroup.Item> {i18n.t("palInfo.defense")}: 0{pal.defense} </ListGroup.Item>
                         <ListGroup.Item>
                           {" "}
-                          Velocidade de <br></br> Trabalho: 0{pal.rarity}{" "}
+                          {i18n.t("palInfo.speed")} <br></br> {i18n.t("palInfo.work")}: 0{pal.rarity}{" "}
                         </ListGroup.Item>
                         <ListGroup.Item>
                           {" "}
-                          Raridade: 0{pal.rarity}{" "}
+                          {i18n.t("palInfo.rarity")}: 0{pal.rarity}{" "}
                         </ListGroup.Item>
                       </ListGroup>
                     </Card>
@@ -126,7 +128,7 @@ function PalModal() {
                   onClick={goToPalPage}
                   style={{ marginTop: "1em" }}
                 >
-                  Ver Mais
+                  {i18n.t("palInfo.seeMoreButton")}
                 </Button>
               </Row>
             </Row>

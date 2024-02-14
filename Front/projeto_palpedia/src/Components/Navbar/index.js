@@ -23,6 +23,7 @@ import Right from "./img/forward-right-small.svg";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 
 import { i18n } from "../../Translate/i18n";
+import SwitchLanguage from "../SwitchLanguageComponent";
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -74,6 +75,11 @@ export default function NavBar() {
         <div className={styles.logo} onClick={handleClickNavigate} />
         <Void />
         <Links>
+          <Form inline>
+            <Col xs="auto">
+              <SwitchLanguage />
+            </Col>
+          </Form>
           <Form inline>
             <Col xs="auto">
               <Form.Control
