@@ -6,7 +6,7 @@
 
 - [x] Somente adm pode deletar
 
-- [] Site deve ser traduzido
+- [x] Site deve ser traduzido
 
 - [x] Cada integrante deve fazer uma parte do front-end e do back-end
 

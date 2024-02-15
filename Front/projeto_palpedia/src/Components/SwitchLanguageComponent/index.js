@@ -1,5 +1,5 @@
-import Switch from "@material-ui/core/Switch";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import { useState, useEffect } from "react";
 import { i18n } from "../../Translate/i18n";
 
@@ -23,7 +23,6 @@ export default function SwitchLanguage() {
       checked: !state.checked,
     }));
 
-
     const languageValue = !state.checked ? "en-US" : "pt-BR";
     localStorage.setItem("i18nextLng", languageValue);
     window.location.reload()
@@ -37,13 +36,13 @@ export default function SwitchLanguage() {
           onChange={handleChange}
           name="checked"
           style={{
-            color: state.checked ? "#F0444A" : "#9e9e9e",
+            color: state.checked ? "#22b534" : "#126dff",
           }}
         />
       }
       label="EN"
       style={{
-        color: "#F0444A",
+        color: "#ffffff",
       }}
     />
   );
