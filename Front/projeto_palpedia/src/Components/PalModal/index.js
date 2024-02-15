@@ -13,6 +13,8 @@ import Container from "react-bootstrap/Container";
 import styles from "./styles.module.scss";
 import { useNavigate } from "react-router-dom";
 
+import { i18n } from "../../Translate/i18n";
+
 function PalModal() {
   const { show, setShow, pal } = useContext(ModalContext);
   const navigate = useNavigate();
@@ -79,7 +81,7 @@ function PalModal() {
               >
                 <Col className={styles.column}>
                   <div className={styles.elements}>
-                    <Row className={styles.column}>Drops</Row>
+                    <Row className={styles.column}>{i18n.t("palInfo.drops")}</Row>
                     {pal.Drops?.BattleDrops.map((drop, idx) => (
                       <Row key={idx}>
                         <Image
@@ -91,18 +93,18 @@ function PalModal() {
                   </div>
                   {pal.Drops?.FarmDrops.length > 0 && (
                     <>
-                    <div className={styles.elements}></div>
-                    <div className={styles.elements} style={{justifyContent: "flex-start"}}>
-                      <Row className={styles.column}>Farms</Row>
-                      {pal.Drops?.FarmDrops.map((drop, idx) => (
-                        <Row key={idx}>
-                          <Image
-                            src={drop.Image}
-                            className={styles.dropImage}
-                          />
-                        </Row>
-                      ))}
-                    </div>
+                      <div className={styles.elements}></div>
+                      <div className={styles.elements} style={{ justifyContent: "flex-start" }}>
+                        <Row className={styles.column}>Farms</Row>
+                        {pal.Drops?.FarmDrops.map((drop, idx) => (
+                          <Row key={idx}>
+                            <Image
+                              src={drop.Image}
+                              className={styles.dropImage}
+                            />
+                          </Row>
+                        ))}
+                      </div>
                     </>
                   )}
                 </Col>
@@ -110,21 +112,21 @@ function PalModal() {
               <Col aria-colspan={2} className={styles.column}>
                 <Row>
                   <Row style={{ display: "flex", justifyContent: "center" }}>
-                    Stats {pal.stats}
+                    {i18n.t("palInfo.stats")}
                   </Row>
                   <Row>
                     <Card>
                       <ListGroup variant="flush">
-                        <ListGroup.Item> Vida: {pal.Stats.Hp} </ListGroup.Item>
-                        <ListGroup.Item> Ataque: {pal.Stats.Attack} </ListGroup.Item>
-                        <ListGroup.Item> Defesa: {pal.Stats.Defense} </ListGroup.Item>
+                        <ListGroup.Item> {i18n.t("palInfo.health")}: {pal.Stats.Hp} </ListGroup.Item>
+                        <ListGroup.Item> {i18n.t("palInfo.attack")}: {pal.Stats.Attack} </ListGroup.Item>
+                        <ListGroup.Item> {i18n.t("palInfo.defense")}: {pal.Stats.Defense} </ListGroup.Item>
                         <ListGroup.Item>
                           {" "}
-                          Quantidade de <br></br> comida: {pal.Stats.Food}{" "}
+                          {i18n.t("palInfo.speed")} <br></br> {i18n.t("palInfo.work")}: 0{pal.rarity}{" "}
                         </ListGroup.Item>
                         <ListGroup.Item>
                           {" "}
-                          Raridade: {pal.Stats.Rarity}{" "}
+                          {i18n.t("palInfo.rarity")}: {pal.Stats.Rarity}{" "}
                         </ListGroup.Item>
                       </ListGroup>
                     </Card>
@@ -139,7 +141,7 @@ function PalModal() {
                   onClick={goToPalPage}
                   style={{ marginTop: "1em" }}
                 >
-                  Ver Mais
+                  {i18n.t("palInfo.seeMoreButton")}
                 </Button>
               </Row>
             </Row>

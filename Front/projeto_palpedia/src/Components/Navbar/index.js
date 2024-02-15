@@ -23,6 +23,7 @@ import Right from "./img/forward-right-small.svg";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 
 import { i18n } from "../../Translate/i18n";
+import SwitchLanguage from "../SwitchLanguageComponent";
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,33 +39,32 @@ export default function NavBar() {
     if (isMenuOpen === true) setIsMenuOpen(!isMenuOpen);
   }
 
-  const token = sessionStorage.getItem("token");
-  if (!token) return;
-
-  const tokenParts = token.split(".");
-  const payload = atob(tokenParts[1].replace(/-/g, "+").replace(/_/g, "/"));
-  const tokenObj = JSON.parse(payload);
-
-  console.log(tokenObj);
-
   function LinkUsers() {
+    const token = sessionStorage.getItem("token");
+    if (!token) return;
+
+    const tokenParts = token.split(".");
+    const payload = atob(tokenParts[1].replace(/-/g, "+").replace(/_/g, "/"));
+    const tokenObj = JSON.parse(payload);
+
+    console.log(tokenObj);
     if (tokenObj.isAdm !== true) return <></>;
     else
       return (
         <Span>
-            <NavMenu>
-              <Icon src={Right} />
-              <Nav>
-                <Link
-                  to="/usuarios"
-                  style={{ color: "white", textDecoration: "none" }}
-                  onClick={handleClick}
-                >
-                  {i18n.t("navbar.users")}
-                </Link>
-              </Nav>
-            </NavMenu>
-          </Span>
+          <NavMenu>
+            <Icon src={Right} />
+            <Nav>
+              <Link
+                to="/usuarios"
+                style={{ color: "white", textDecoration: "none" }}
+                onClick={handleClick}
+              >
+                {i18n.t("navbar.users")}
+              </Link>
+            </Nav>
+          </NavMenu>
+        </Span>
       );
   }
 
@@ -75,6 +75,11 @@ export default function NavBar() {
         <div className={styles.logo} onClick={handleClickNavigate} />
         <Void />
         <Links>
+          <Form inline>
+            <Col xs="auto">
+              <SwitchLanguage />
+            </Col>
+          </Form>
           <Form inline>
             <Col xs="auto">
               <Form.Control

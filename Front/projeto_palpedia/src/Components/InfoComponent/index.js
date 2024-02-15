@@ -10,8 +10,9 @@ import { Bar } from "react-chartjs-2";
 import Container from "react-bootstrap/esm/Container";
 import { useState } from "react";
 
-function InfoPal() {
+import { i18n } from "../../Translate/i18n";
 
+function InfoPal() {
   return (
     <>
       <Row className={styles.row} id="Linha nome" style={{ alignItems: "center" }}>
@@ -71,10 +72,10 @@ function InfoPal() {
           style={{ marginBlock: "1em" }}
         >
           <Card className="bg-dark text-white">
-            <Card.Header>Descrição</Card.Header>
+            <Card.Header>{i18n.t("palInfo.description")}</Card.Header>
             <Card.Body>
               <Card.Text>
-                Descrição do Pal: Lorem ipsum dolor sit amet consectetur
+                Lorem ipsum dolor sit amet consectetur
                 adipisicing elit. Deleniti exercitationem esse aspernatur eaque
                 impedit ad at consectetur hic dolores, modi fuga officiis quidem
                 veniam, cupiditate recusandae iusto, quibusdam excepturi neque!
@@ -90,7 +91,7 @@ function InfoPal() {
           style={{ marginBlock: "1em" }}
         >
           <Card className="bg-dark text-white" style={{ width: "100%" }}>
-            <Card.Header>Drops</Card.Header>
+            <Card.Header>{i18n.t("palInfo.drops")}</Card.Header>
             <Card.Body className={styles.cardBody}>
               {Array.from({ length: 5 }).map((_, idx) => (
                 <Card.Img
@@ -123,11 +124,11 @@ function InfoPal() {
 
 function StatusGraph() {
   const stats = [
-    "Vida",
-    "Ataque",
-    "Defesa",
-    "Velocidade de Trabalho",
-    "Raridade",
+    i18n.t("palInfo.health"),
+    i18n.t("palInfo.attack"),
+    i18n.t("palInfo.defense"),
+    (i18n.t("palInfo.speed") + i18n.t("palInfo.work")),
+    i18n.t("palInfo.rarity")
   ];
 
   const labels = stats;
@@ -187,7 +188,7 @@ function StatusGraph() {
 function SkillsCard() {
   return (
     <Card className="bg-dark text-white" style={{ paddingBottom: "1em" }}>
-      <Card.Header style={{ fontSize: "1.5em" }}>Skills</Card.Header>
+      <Card.Header style={{ fontSize: "1.5em" }}>{i18n.t("palInfo.skills")}</Card.Header>
       <ListGroup className="bg-dark text-white border-white">
         {Array.from({ length: 5 }).map((_, idx) => (
           <ListGroup.Item
@@ -196,7 +197,7 @@ function SkillsCard() {
           >
             <Card className="bg-dark text-white border-white">
               <Card.Header className="bg-dark text-white border-white">
-                Skill de Parceiro
+              {i18n.t("palInfo.skills")} {i18n.t("palInfo.skills")}
               </Card.Header>
               <Card.Body>
                 <Card.Text>

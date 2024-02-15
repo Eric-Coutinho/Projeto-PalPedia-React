@@ -2,49 +2,50 @@ const messages = {
     en: {
         translations: {
             login: {
-                loginTitle: "Fazer login",
-                emailAdress: "Endereço de Email",
+                loginTitle: "Login",
+                emailAdress: "Email Adress",
                 email: "Email",
-                password: "Senha",
-                buttonLogin: "Entrar",
-                buttonRegister: "Registre-se"
+                password: "Password",
+                buttonLogin: "Join",
+                buttonRegister: "Register"
             },
             register: {
                 registerTitle: "Create Account",
-                nameComplete: "Nome Completo",
-                name: "name",
-                emailAdress: "Endereço de Email",
+                nameComplete: "Complete Name",
+                name: "Name",
+                emailAdress: "Email Adress",
                 email: "Email",
-                password: "Senha",
-                confirmPassword: "Confirmar senha",
-                buttonRegister: "Registrar",
-                buttonCancel: "Cancelar"
+                password: "Password",
+                confirmPassword: "Confirm Password",
+                buttonRegister: "Register",
+                buttonCancel: "Cancel"
             },
             navbar: {
-                login: "Entrar",
-                register: "Registre-se",
-                about: "Sobre"
-            },
-            searchHome: {
-                search: "Procurar"
+                login: "Login",
+                register: "Register",
+                about: "About",
+                users: "Users",
+                search: "Search"
             },
             notFound: {
-                title: "Página não Encontrada",
-                text: "A página que busca não existe, está em construção ou não tem acesso a ela."
+                title: "Page not Found",
+                text: "The page you are searching for either doesn't exists, is under construction, or you don't have access to it."
             },
             palInfo: {
-                health: "Vida",
-                attack: "Ataque",
-                defense: "Defesa",
-                workSpeed: "Velocidade de trabalho",
-                rarity: "Raridade",
-                seeMoreButton: "Ver Mais",
-                description: "Descrição",
-                drops: "Itens",
-                skills: "Habilidades",
-                partner: "de Parceiro",
-                working: "de Trabalho",
-                active: "de Combate",
+                health: "Health",
+                attack: "Attack",
+                defense: "Defense",
+                speed: "Work",
+                work:"Speed",
+                rarity: "Rarity",
+                seeMoreButton: "See More",
+                description: "Description",
+                drops: "Drops",
+                stats: "Stats",
+                skills: "Skills",
+                partner: "Parter",
+                working: "Work",
+                active: "Active",
             }
         }
     }
