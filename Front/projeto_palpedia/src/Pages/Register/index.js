@@ -8,6 +8,8 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 
+import { i18n } from "../../Translate/i18n";
+
 export default function RegisterPage() {
   return (
     <>
@@ -17,7 +19,7 @@ export default function RegisterPage() {
           <Col style={{ display: "flex", justifyContent: "center" }}>
           <Card style={{ width: '100%' }}>
             <Card.Body>
-              <Card.Title>Criar Conta</Card.Title>
+              <Card.Title>{i18n.t("register.registerTitle")}</Card.Title>
               <AlertComponent />
               <Formulario />
             </Card.Body>

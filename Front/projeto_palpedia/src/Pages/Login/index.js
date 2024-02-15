@@ -1,12 +1,12 @@
 import LoginForm from "../../Components/LoginForm";
 import AlertComponent from "../../Components/AlertComponent";
 
-// import styles from './styles.module.scss';
-
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
+
+import { i18n } from "../../Translate/i18n";
 
 export default function LoginPage() {
   return (
@@ -18,7 +18,7 @@ export default function LoginPage() {
             <Card style={{ width: "100%" }}>
               <Card.Body>
                 <AlertComponent />
-                <Card.Title>Fazer login</Card.Title>
+                <Card.Title>{i18n.t("login.loginTitle")}</Card.Title>
                 <LoginForm />
               </Card.Body>
             </Card>
