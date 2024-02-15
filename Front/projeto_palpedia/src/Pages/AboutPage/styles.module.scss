@@ -1,0 +1,37 @@
+.container {
+    margin-block: 1em;
+    padding: 1em;
+    color: white;
+}
+
+.row {
+    padding-inline: 1em;
+}
+
+.textCard {
+    margin-block: 1em;
+}
+
+.aboutText {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+.image-fade-in-container {
+    display: inline-block;
+    position: relative;
+}
+
+.imgRight {
+    width: 100%;
+    height: auto;
+    mask-image: linear-gradient(to left, rgba(0, 0, 0, 1.0) 40%, transparent 100%);
+    border-radius: 5px;
+}
+
+.imgLeft {
+    width: 100%;
+    height: auto;
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 1.0) 40%, transparent 100%);
+    border-radius: 5px;
+}
