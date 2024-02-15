@@ -1,4 +1,5 @@
 import "./App.css";
+
 import { Route, Routes } from "react-router-dom";
 import { AlertProvider } from "./Context/Alert";
 import { ModalProvider } from "./Context/Modal";
@@ -8,6 +9,7 @@ import LoginPage from "./Pages/Login";
 import InfoPage from "./Pages/InfoPage";
 import UserPage from "./Pages/UserPage";
 import NavBar from "./Components/Navbar";
+import AboutPage from "./Pages/AboutPage";
 import RegisterPage from "./Pages/Register";
 import NotFoundPage from "./Pages/NotFound";
 import ProtectedRoute from "./Pages/ProtectedRoute"
@@ -23,6 +25,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/pal" element={<InfoPage />} />
+            <Route path="/about" element={<AboutPage />} />
             <Route path="/usuarios" element={
               <ProtectedRoute
                 errorPage={<NotFoundPage />}
