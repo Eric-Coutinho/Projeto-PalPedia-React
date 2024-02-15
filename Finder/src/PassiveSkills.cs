@@ -43,6 +43,7 @@ public class PassiveSkills
                     int.Parse(skillPercent)
                 ));
             }
+            Skills.Add(skill);
         }
     }
 

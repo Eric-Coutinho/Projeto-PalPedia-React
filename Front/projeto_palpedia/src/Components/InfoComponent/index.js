@@ -220,6 +220,37 @@ function SkillsCard({ Pal }) {
             </Card>
           </ListGroup.Item>
         )}
+        {Pal.PassiveSkills?.length > 0 && (
+          <ListGroup.Item
+            className="bg-dark text-white border-black"
+            variant="dark"
+          >
+            <Card className="bg-dark text-white border-white">
+              <Card.Header className="bg-dark text-white border-white">
+                {i18n.t("palInfo.activeSkills")}
+              </Card.Header>
+              <Card.Body>
+                <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+                  {Pal.PassiveSkills?.map((skill, idx) => (
+                    <ListGroup className="bg-dark text-white border-white">
+                      <Card className="bg-dark text-white border-white">
+                        <Card.Header className="bg-dark text-white border-white">
+                          {skill.Name}
+                          <Card.Img style={{width: "auto", scale: "0.5"}} src={`https://www.palpedia.net/assets/ui/passive_${skill.Passive.Type.toString().toLowerCase()}_${skill.Passive.Level}.png`} />
+                        </Card.Header>
+                          {skill.Skills?.map((stats, idx) => (
+                            <Card.Text>
+                              {stats.Title}
+                            </Card.Text>
+                          ))}
+                      </Card>
+                    </ListGroup>
+                  ))}
+                </div>
+              </Card.Body>
+            </Card>
+          </ListGroup.Item>
+        )}
         {Pal.ActiveSkills?.length > 0 && (
           <ListGroup.Item
             className="bg-dark text-white border-black"
