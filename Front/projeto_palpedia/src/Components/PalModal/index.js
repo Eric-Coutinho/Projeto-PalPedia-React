@@ -26,7 +26,7 @@ function PalModal() {
 
   const goToPalPage = () => {
     setShow(false);
-    navigate("/pal");
+    navigate("/pal/" + pal.Id);
   };
   console.log(pal);
   return (
@@ -117,16 +117,16 @@ function PalModal() {
                   <Row>
                     <Card>
                       <ListGroup variant="flush">
-                        <ListGroup.Item> {i18n.t("palInfo.health")}: {pal.Stats.Hp} </ListGroup.Item>
-                        <ListGroup.Item> {i18n.t("palInfo.attack")}: {pal.Stats.Attack} </ListGroup.Item>
-                        <ListGroup.Item> {i18n.t("palInfo.defense")}: {pal.Stats.Defense} </ListGroup.Item>
+                        <ListGroup.Item> {i18n.t("palInfo.health")}: {pal.Stats?.Hp} </ListGroup.Item>
+                        <ListGroup.Item> {i18n.t("palInfo.attack")}: {pal.Stats?.Attack} </ListGroup.Item>
+                        <ListGroup.Item> {i18n.t("palInfo.defense")}: {pal.Stats?.Defense} </ListGroup.Item>
                         <ListGroup.Item>
                           {" "}
-                          {i18n.t("palInfo.speed")} <br></br> {i18n.t("palInfo.work")}: 0{pal.rarity}{" "}
+                          {i18n.t("palInfo.food")} <br></br> {i18n.t("palInfo.amount")}: {pal.Stats?.Food}{" "}
                         </ListGroup.Item>
                         <ListGroup.Item>
                           {" "}
-                          {i18n.t("palInfo.rarity")}: {pal.Stats.Rarity}{" "}
+                          {i18n.t("palInfo.rarity")}: {pal.Stats?.Rarity}{" "}
                         </ListGroup.Item>
                       </ListGroup>
                     </Card>

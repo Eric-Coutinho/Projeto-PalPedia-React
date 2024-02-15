@@ -37,7 +37,8 @@ class PalController {
 
     static async getPal(req, res) {
         var params = req.params;
-        const { id } = params;
+        let { id } = params;
+        id = id.toUpperCase();
 
         if (!id)
             return res.status(422).send({ message: "É necessário fornecer um nome." });
@@ -46,13 +47,17 @@ class PalController {
         if (!json)
             return res.status(500).send({ message: "Something failed", data: error.message });
 
+        var form = "DEFAULT";
+        if (id.includes("ALPHA")) form = "ALPHA"
+        id = id.replace(/DEFAULT/g, "").replace(/ALPHA/g, "");
+
         var palpedia = json;
         for (let specie of palpedia) {
             for (let pal of specie.Pals) {
-                if (pal.Form.toUpperCase() != "DEFAULT")
-                if (pal.Pal.Name.toUpperCase() == id.toUpperCase() ||
-                    (specie.Id + pal.Letter).toUpperCase() == id.toUpperCase() ||
-                    (specie.Id + pal.Letter).toUpperCase() == (id + "A").toUpperCase())
+                if (pal.Form.toUpperCase() == form)
+                if (pal.Pal.Name.toUpperCase() == id ||
+                    (specie.Id + pal.Letter).toUpperCase() == id ||
+                    (specie.Id + pal.Letter).toUpperCase() == id + "A")
                     return res.status(200).send({Id: specie.Id + (pal.Letter != "A" ? pal.Letter : ''), ...pal.Pal, Specie: specie})
             };
         };
@@ -74,10 +79,10 @@ class PalController {
         for (let specie of palpedia) {
             for (let pal of specie.Pals) {
                 if (pal.Form.toUpperCase() != "ALPHA")
-                if (pal.Pal.Name.toUpperCase() == id.toUpperCase() ||
-                    (specie.Id + pal.Letter).toUpperCase() == id.toUpperCase() ||
-                    (specie.Id + pal.Letter).toUpperCase() == (id + "A").toUpperCase())
-                    return res.status(200).send({Id: specie.Id + (pal.Letter != "A" ? pal.Letter : ''), ...pal.Pal, Specie: specie})
+                    if (pal.Pal.Name.toUpperCase() == id.toUpperCase() ||
+                        (specie.Id + pal.Letter).toUpperCase() == id.toUpperCase() ||
+                        (specie.Id + pal.Letter).toUpperCase() == (id + "A").toUpperCase())
+                        return res.status(200).send({Id: specie.Id + (pal.Letter != "A" ? pal.Letter : ''), ...pal.Pal, Specie: specie})
             };
         };
         return res.status(200).send();

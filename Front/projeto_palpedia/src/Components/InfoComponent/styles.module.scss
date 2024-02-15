@@ -20,6 +20,9 @@
     font-size: 2em;
     font-weight: 500;
     margin-left: 0.75em;
+    display: flex;
+    gap: 10px;
+    width: auto !important;
 }
 
 @media (max-width: 1440px) {

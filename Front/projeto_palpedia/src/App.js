@@ -24,7 +24,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/pal" element={<InfoPage />} />
+            <Route path="/pal/:id" element={<InfoPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/usuarios" element={
               <ProtectedRoute

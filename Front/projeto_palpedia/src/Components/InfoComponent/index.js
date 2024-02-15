@@ -8,24 +8,37 @@ import styles from "./styles.module.scss";
 import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 import Container from "react-bootstrap/esm/Container";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 import { i18n } from "../../Translate/i18n";
+import { useParams } from "react-router-dom";
 
 function InfoPal() {
+  const { id } = useParams();
+  const [Pal, setPal] = useState([]);
+
+  useEffect(() => {
+    async function requestPals() {
+      try {
+        const result = await axios.get("http://localhost:8080/api/pal/" + id);
+        setPal(result.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    requestPals();
+  }, []);
+
   return (
     <>
       <Row className={styles.row} id="Linha nome" style={{ alignItems: "center" }}>
-        <Col xs={12} lg={2} className={styles.column} id="Coluna Elementos">
-          <div className={styles.palName}>Nome do Pal</div>
-        </Col>
-        <Col xs={12} lg={2} className={styles.columnElements}>
-          {Array.from({ length: 2 }).map((_, idx) => (
-            <Card style={{ height:"5em", width:"5em", marginInline: "1em", backgroundColor: "transparent" }}>
-              <Card.Img src="https://palpedia.azrocdn.com/chickenpal.png" />
-            </Card>
-          ))}
-        </Col>
+        <div className={styles.palName}><p style={{ opacity: "0.5" }}>#{Pal.Id}</p>{Pal.Name}</div>
+        {Pal.Element?.map((element, idx) => (
+          <Card style={{ height: "5em", width: "5em", marginInline: "1em", backgroundColor: "transparent" }}>
+            <Card.Img src={`https://www.palpedia.net/_next/image?url=%2Fassets%2Fui%2F${element.toString().toLowerCase()}.png&w=64&q=75`} />
+          </Card>
+        ))}
         <Col xs={0} className={styles.column}></Col>
       </Row>
       <Row
@@ -39,7 +52,7 @@ function InfoPal() {
             style={{ marginBottom: "1em", height: "fit-content" }}
           >
             <Card.Img
-              src="https://palpedia.azrocdn.com/pinkcat.png"
+              src={Pal.Thumbnail}
               alt="Card image"
             />
           </Card>
@@ -52,7 +65,7 @@ function InfoPal() {
           id="Coluna Espaçamento"
         ></Col>
         <Col md={12} xxl={6} className={styles.column} id="Stats Graph">
-          <StatusGraph />
+          <StatusGraph Stats={Pal.Stats} />
         </Col>
       </Row>
       <Row
@@ -75,10 +88,7 @@ function InfoPal() {
             <Card.Header>{i18n.t("palInfo.description")}</Card.Header>
             <Card.Body>
               <Card.Text>
-                Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Deleniti exercitationem esse aspernatur eaque
-                impedit ad at consectetur hic dolores, modi fuga officiis quidem
-                veniam, cupiditate recusandae iusto, quibusdam excepturi neque!
+                {Pal.Description?.Text}
               </Card.Text>
             </Card.Body>
           </Card>
@@ -93,15 +103,18 @@ function InfoPal() {
           <Card className="bg-dark text-white" style={{ width: "100%" }}>
             <Card.Header>{i18n.t("palInfo.drops")}</Card.Header>
             <Card.Body className={styles.cardBody}>
-              {Array.from({ length: 5 }).map((_, idx) => (
-                <Card.Img
-                  src="https://palpedia.azrocdn.com/chickenpal.png"
-                  style={{
-                    width: "3.5em",
-                    height: "3.5em",
-                    marginInline: "0.5em",
-                  }}
-                />
+              {Pal.Drops?.BattleDrops.map((drop, idx) => (
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                  <Card.Img
+                    src={drop.Item?.Image}
+                    style={{
+                      width: "3.5em",
+                      height: "3.5em",
+                      marginInline: "0.5em",
+                    }}
+                  />
+                  <Card.Text>{drop.Percent}%</Card.Text>
+                </div>
               ))}
             </Card.Body>
           </Card>
@@ -114,7 +127,7 @@ function InfoPal() {
       >
         <Col className={styles.column} id="Skills Card">
           <Container fluid>
-            <SkillsCard />
+            <SkillsCard Pal={Pal} />
           </Container>
         </Col>
       </Row>
@@ -122,12 +135,12 @@ function InfoPal() {
   );
 }
 
-function StatusGraph() {
+function StatusGraph({ Stats }) {
   const stats = [
     i18n.t("palInfo.health"),
     i18n.t("palInfo.attack"),
     i18n.t("palInfo.defense"),
-    (i18n.t("palInfo.speed") + i18n.t("palInfo.work")),
+    (i18n.t("palInfo.food") + " " + i18n.t("palInfo.amount")),
     i18n.t("palInfo.rarity")
   ];
 
@@ -136,7 +149,7 @@ function StatusGraph() {
     labels: labels,
     datasets: [
       {
-        data: [65, 59, 80, 81, 56],
+        data: [Stats?.Hp, Stats?.Attack, Stats?.Defense, Stats?.Food, Stats?.Rarity],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(255, 159, 64, 0.2)",
@@ -185,28 +198,56 @@ function StatusGraph() {
   return <Bar data={data} options={options} />;
 }
 
-function SkillsCard() {
+function SkillsCard({ Pal }) {
   return (
     <Card className="bg-dark text-white" style={{ paddingBottom: "1em" }}>
       <Card.Header style={{ fontSize: "1.5em" }}>{i18n.t("palInfo.skills")}</Card.Header>
       <ListGroup className="bg-dark text-white border-white">
-        {Array.from({ length: 5 }).map((_, idx) => (
+        {Pal.PartnerSkill && (
           <ListGroup.Item
             className="bg-dark text-white border-black"
             variant="dark"
           >
             <Card className="bg-dark text-white border-white">
               <Card.Header className="bg-dark text-white border-white">
-              {i18n.t("palInfo.skills")} {i18n.t("palInfo.skills")}
+                {i18n.t("palInfo.partnerSkills")} - {Pal.PartnerSkill.Name}
               </Card.Header>
               <Card.Body>
                 <Card.Text>
-                  As vezes bota um ovo quando está na MonsterFarm
+                  {Pal.PartnerSkill.Description.Text}
                 </Card.Text>
               </Card.Body>
             </Card>
           </ListGroup.Item>
-        ))}
+        )}
+        {Pal.ActiveSkills?.length > 0 && (
+          <ListGroup.Item
+            className="bg-dark text-white border-black"
+            variant="dark"
+          >
+            <Card className="bg-dark text-white border-white">
+              <Card.Header className="bg-dark text-white border-white">
+                {i18n.t("palInfo.activeSkills")}
+              </Card.Header>
+              <Card.Body>
+                <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+                  {Pal.ActiveSkills?.map((skill, idx) => (
+                    <ListGroup className="bg-dark text-white border-white">
+                      <Card className="bg-dark text-white border-white">
+                        <Card.Header className="bg-dark text-white border-white">
+                          Lv. {skill.Level} - {skill.Skill.Name}
+                        </Card.Header>
+                        <Card.Text>
+                          {skill.Skill.Description.Text}
+                        </Card.Text>
+                      </Card>
+                    </ListGroup>
+                  ))}
+                </div>
+              </Card.Body>
+            </Card>
+          </ListGroup.Item>
+        )}
       </ListGroup>
     </Card>
   );
