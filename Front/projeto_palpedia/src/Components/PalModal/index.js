@@ -26,7 +26,7 @@ function PalModal() {
     setShow(false);
     navigate("/pal");
   };
-
+  console.log(pal);
   return (
     <>
       <Modal
@@ -40,10 +40,10 @@ function PalModal() {
       >
         <Modal.Header closeButton>
           <Col>
-            <Modal.Title>Nome do Pal{pal.name}</Modal.Title>
+            <Modal.Title>{pal.Name}</Modal.Title>
           </Col>
           <Col style={{ display: "flex", justifyContent: "flex-end" }}>
-            {Array.from({ length: 2 }).map((_, idx) => (
+            {pal.Element?.map((element, idx) => (
               <Card
                 style={{
                   height: "5em",
@@ -51,8 +51,9 @@ function PalModal() {
                   marginInline: "0.5em",
                   backgroundColor: "transparent",
                 }}
+                key={idx}
               >
-                <Card.Img src="https://palpedia.azrocdn.com/chickenpal.png" />
+                <Card.Img src={`https://www.palpedia.net/_next/image?url=%2Fassets%2Fui%2F${element.toString().toLowerCase()}.png&w=64&q=75`} />
               </Card>
             ))}
           </Col>
@@ -60,7 +61,7 @@ function PalModal() {
         <Modal.Body>
           <div className={styles.cardDiv}>
             <Card className={styles.cardBody}>
-              <Image src="https://palpedia.azrocdn.com/chickenpal.png" />
+              <Image src={pal.Thumbnail} />
             </Card>
           </div>
         </Modal.Body>
@@ -68,11 +69,7 @@ function PalModal() {
           <Container>
             <Row className={styles.row}>
               <Col className={styles.column}>
-                Descrição do Pal: Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Deleniti exercitationem esse aspernatur eaque
-                impedit ad at consectetur hic dolores, modi fuga officiis quidem
-                veniam, cupiditate recusandae iusto, quibusdam excepturi neque!
-                {pal.description}
+                {pal.Description?.Text}
               </Col>
             </Row>
             <Row className={styles.row}>
@@ -82,16 +79,32 @@ function PalModal() {
               >
                 <Col className={styles.column}>
                   <div className={styles.elements}>
-                    <Row className={styles.column}>Drops {pal.drops}</Row>
-                    {Array.from({ length: 3 }).map((_, idx) => (
+                    <Row className={styles.column}>Drops</Row>
+                    {pal.Drops?.BattleDrops.map((drop, idx) => (
                       <Row key={idx}>
                         <Image
-                          src="https://palpedia.azrocdn.com/chickenpal.png"
+                          src={drop.Item.Image}
                           className={styles.dropImage}
                         />
                       </Row>
                     ))}
                   </div>
+                  {pal.Drops?.FarmDrops.length > 0 && (
+                    <>
+                    <div className={styles.elements}></div>
+                    <div className={styles.elements} style={{justifyContent: "flex-start"}}>
+                      <Row className={styles.column}>Farms</Row>
+                      {pal.Drops?.FarmDrops.map((drop, idx) => (
+                        <Row key={idx}>
+                          <Image
+                            src={drop.Image}
+                            className={styles.dropImage}
+                          />
+                        </Row>
+                      ))}
+                    </div>
+                    </>
+                  )}
                 </Col>
               </Col>
               <Col aria-colspan={2} className={styles.column}>
@@ -102,16 +115,16 @@ function PalModal() {
                   <Row>
                     <Card>
                       <ListGroup variant="flush">
-                        <ListGroup.Item> Vida: 0{pal.hp} </ListGroup.Item>
-                        <ListGroup.Item> Ataque: 0{pal.attack} </ListGroup.Item>
-                        <ListGroup.Item> Defesa: 0{pal.rarity} </ListGroup.Item>
+                        <ListGroup.Item> Vida: {pal.Stats.Hp} </ListGroup.Item>
+                        <ListGroup.Item> Ataque: {pal.Stats.Attack} </ListGroup.Item>
+                        <ListGroup.Item> Defesa: {pal.Stats.Defense} </ListGroup.Item>
                         <ListGroup.Item>
                           {" "}
-                          Velocidade de <br></br> Trabalho: 0{pal.rarity}{" "}
+                          Quantidade de <br></br> comida: {pal.Stats.Food}{" "}
                         </ListGroup.Item>
                         <ListGroup.Item>
                           {" "}
-                          Raridade: 0{pal.rarity}{" "}
+                          Raridade: {pal.Stats.Rarity}{" "}
                         </ListGroup.Item>
                       </ListGroup>
                     </Card>

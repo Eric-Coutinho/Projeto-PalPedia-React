@@ -44,7 +44,7 @@ public static class PalJson
         var data = new Dictionary<string, object>();
 
         data["Name"] = pal.Name;
-        data["Element"] = pal.Element.ToString();
+        data["Element"] = pal.Element.ToDictionary();
         data["Thumbnail"] = pal.ThumbnailImage;
         data["Image"] = pal.Image;
         data["Description"] = pal.Description.ToDictionary();
@@ -57,6 +57,16 @@ public static class PalJson
         data["ActiveSkills"] = pal.ActiveSkills.ToDictionary();
 
         return data;
+    }
+
+    public static List<string> ToDictionary(this List<Element?> elements)
+    {
+        var list = new List<string>();
+        
+        foreach (var element in elements)
+            list.Add(element.ToString());
+
+        return list;
     }
 
     public static Dictionary<string, object> ToDictionary(this Description description)
@@ -96,6 +106,7 @@ public static class PalJson
             dropdata["Minimum"] = drop.MinQuant;
             if (drop.MaxQuant is not null)
                 dropdata["Maximum"] = drop.MaxQuant;
+            dropdata["Percent"] = drop.Percent;
             battledrops.Add(dropdata);
         }
         data["BattleDrops"] = battledrops;

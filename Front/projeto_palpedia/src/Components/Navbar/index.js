@@ -39,7 +39,7 @@ export default function NavBar() {
   }
 
   const token = sessionStorage.getItem("token");
-  console.log(token);
+  if (!token) return;
 
   const tokenParts = token.split(".");
   const payload = atob(tokenParts[1].replace(/-/g, "+").replace(/_/g, "/"));

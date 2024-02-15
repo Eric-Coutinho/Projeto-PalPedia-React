@@ -29,14 +29,18 @@ public class Pal
         }
         set => _name = value;
     }
-    private Element? _element;
-    public Element? Element
+    private List<Element?> _element;
+    public List<Element?> Element
     {
         get {
             if (_element is null && _html is not null) {
+                _element = new();
                 var node = _html.SelectNode("div", "class", "flex-row col-gap align-center");
-                var nodeImage = node.SelectNode("img");
-                _element = nodeImage.GetAttributeValue("alt", "").GetElement();
+                var nodesImage = node.SelectNodes("img");
+                foreach (var element in nodesImage)
+                {
+                    _element.Add(element.GetAttributeValue("alt", "").GetElement());
+                }
             }
             return _element;
         }
@@ -64,7 +68,8 @@ public class Pal
                 var node = html.SelectNode("a", "class", "image image-thumbnail");
                 var nodeImage = node.SelectNode("img");
                 string image = nodeImage.GetAttributeValue("src", "");
-                _image = image.Replace("/revision/latest?cb=20240202133852", "");
+                int index = image.IndexOf(".png");
+                _image = image.Substring(0, index + 4);
             }
             return _image;
         }
